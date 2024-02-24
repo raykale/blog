@@ -35,6 +35,8 @@ exports.loginUser = async (req, res) => {
     if (!user || !await bcrypt.compare(req.body.password, user.password)) {
       res.status(400).send('Invalid login credentials')
     } else {
+      // https://i.imgur.com/3quZxs4.png
+      // This is accomplishing step 2
       const token = await user.generateAuthToken()
       res.json({ user, token })
     }
