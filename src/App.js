@@ -148,11 +148,40 @@ export default function App(){
 
     return(
         <div className={styles.App}>
+            {/*
+               Get all Blog Posts when the component Mounts
+               Create an individual Blogs
+            */}
             <Routes>
-                <Route path="/" element={<HomePage user={user} token={token} setToken={setToken}/>}></Route>
-                <Route path="/register" element={<AuthPage setUser={setUser} setToken={setToken} signUp={signUp}/>}></Route>
-                <Route path="/blog" element={<ShowPage user={user} token={token} setToken={setToken}/>}></Route>
+                <Route path="/" 
+                element={
+                <HomePage 
+                    user={user} 
+                    token={token} 
+                    setToken={setToken}
+                    getAllBlogs={getAllBlogs}
+                    createBlog={createBlog}
+                />}></Route>
+                <Route path="/register" 
+                element={
+                <AuthPage 
+                    setUser={setUser} 
+                    setToken={setToken} 
+                    signUp={signUp}
+                    login={login}
+                />}></Route>
+                <Route path="/blog" 
+                element={
+                <ShowPage 
+                    user={user} 
+                    token={token} 
+                    setToken={setToken}
+                    getIndividualBlog={getIndividualBlog}
+                    deleteBlog={deleteBlog}
+                    updateBlog={updateBlog}
+                />}></Route>
             </Routes>
+            
         </div>
     )
 }
