@@ -22,7 +22,7 @@ export default function App(){
            setUser(data.user)
            setToken(data.token)
            localStorage.setItem('token', data.token)
-           localStorage.setItem('user', data.user)
+           localStorage.setItem('user', JSON.stringify(data.user))
         } catch (error) {
            console.error(error) 
         }
@@ -49,7 +49,7 @@ export default function App(){
         // You need to decide what additional things you would like to accomplish when you
         // set up your stuff
         const userData = data.user
-        localStorage.setItem('user', userData)
+        localStorage.setItem('user', JSON.stringify(userData))
         setUser(userData)
         } catch (error) {
             console.error(error)
@@ -159,6 +159,7 @@ export default function App(){
                     user={user} 
                     token={token} 
                     setToken={setToken}
+                    setUser={setUser}
                     getAllBlogs={getAllBlogs}
                     createBlog={createBlog}
                 />}></Route>
@@ -170,18 +171,19 @@ export default function App(){
                     signUp={signUp}
                     login={login}
                 />}></Route>
-                <Route path="/blog" 
+                <Route path="/blog/:id" 
                 element={
                 <ShowPage 
                     user={user} 
                     token={token} 
                     setToken={setToken}
+                    setUser={setUser}
                     getIndividualBlog={getIndividualBlog}
                     deleteBlog={deleteBlog}
                     updateBlog={updateBlog}
                 />}></Route>
             </Routes>
-            
+
         </div>
     )
 }
